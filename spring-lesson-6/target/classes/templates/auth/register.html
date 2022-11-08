@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:include="fragments.html :: head('Registration Page')">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-white mb-4">Bootstrap 4 Login Form</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+
+                    <!-- form card login -->
+                    <div class="card rounded-0">
+                        <div class="card-header">
+                            <h3 class="mb-0">Registration</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST" th:action="@{/auth/register}" th:object="${userDto}">
+                                <div class="form-group">
+                                    <label for="uname1">Username</label>
+                                    <input type="text" class="form-control form-control-lg rounded-0" name="username" th:field="${userDto.username}" id="uname1" required="">
+                                    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="${userDto.username}" >Username error</div>
+                                    <div class="invalid-feedback">Oops, you missed this one.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" id="pwd1" name="password" th:field="${userDto.password}" required="" autocomplete="new-password">
+                                    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="${userDto.password}" >Password error</div>
+                                    <div class="invalid-feedback">Enter your password too!</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" id="cpwd1" name="confirmPassword" th:field="${userDto.confirmPassword}" required="" autocomplete="new-password">
+                                    <div style="color: red" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="${userDto.confirmPassword}" >Confirm password error</div>
+                                    <div class="invalid-feedback">Enter your password again!</div>
+                                </div>
+
+<!--                                <div class="form-check">-->
+<!--                                    <input type="checkbox" class="form-check-input" id="remember-me" name="rememberMe">-->
+<!--                                    <label class="form-check-label" for="remember-me">Remember me ?</label>-->
+<!--                                </div>-->
+
+                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Register</button>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+
+                </div>
+
+
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+
+</body>
+</html>

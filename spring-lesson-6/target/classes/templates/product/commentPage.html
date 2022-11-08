@@ -1,0 +1,55 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:include="fragments.html :: head('Comment page')">
+
+</head>
+
+<body>
+
+<h5 style="text-align: center">Welcome to comment list, open for criticise</h5>
+
+<div class="row">
+    <div class="offset-2 col-md-4">
+        <form method="post" th:action="@{/leaveComment}" th:object="${product}" >
+
+            <div class="form-group">
+                    <label>Product id </label >
+                    <!--                th:text="${product_id}"-->
+                    <input type="text" readonly name="id" th:field="${product.id}" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label>Product name</label>
+                <!--                th:text="${product_id}"-->
+                <input type="text" readonly  th:field="${product.name}" class="form-control" />
+            </div>
+            <div class="form-group">
+            <label>Product price</label>
+            <!--                th:text="${product_id}"-->
+            <input type="text" readonly  th:field="${product.price}" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Comment</label>
+                <textarea name="body"  style="width: 400px;height:200px ;" placeholder="Leave your comment here"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Leave comment</button>
+
+
+        </form>
+
+
+    </div>
+</div>
+
+<div class="form-group mb-3">
+
+    <!-- <input type="text" name="price" class="form-control" placeholder="Product price"/> -->
+</div>
+
+
+
+</body>
+</html>

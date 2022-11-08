@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User profile</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid #ccc;
+        }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+
+        .panel {
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row" th:object="${individual}">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title" >Username : <i th:text="${individual.username}"></i></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://thumbs.dreamstime.com/b/%D1%81%D0%BE%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BC%D0%B5%D0%BD%D0%B5-%D0%B6%D0%B5%D1%80-69566644.jpg" class="img-circle img-responsive"> </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td><b>Username</b></td>
+                                    <td th:text="${individual.username}"></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Non-locked</b></td>
+                                    <td th:text="${individual.isAccountNonLocked()}"></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Active</b></td>
+                                    <td th:text="${individual.isAccountNonExpired()}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td><b>About user</b></td>
+                                    <td >
+                                        A user's profile photo shows up whenever you view the user in the Google Admin console, when the user communicates or shares content,
+                                        and when another user hovers over their name in their inbox, Google Contacts, or Google Chat list.
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <a href="/" class="btn btn-primary">Main page</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

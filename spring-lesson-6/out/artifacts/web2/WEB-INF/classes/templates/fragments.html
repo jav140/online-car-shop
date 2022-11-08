@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <script th:src="@{/static/js/jquery-3.2.1.slim.min.js}"></script>
+    <script th:src="@{/static/js/popper.min.js}"></script>
+    <script th:src="@{/static/js/main.js}"></script>
+</head>
+<body>
+<section th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">B16 Car shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+<!--                    <a class="nav-link" href="/admin">Admin</a>-->
+                    <div class="container">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin menu
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" >
+                                <li><a href="/productAdd" class="dropdown-item" >Product add</a></li>
+                                <li><a href="/productList" class="dropdown-item">Show list of products</a></li>
+                                <li><a href="/productList" class="dropdown-item">Product edit</a></li>
+                                <li><a href="/productList" class="dropdown-item">Product delete</a></li>
+                                <li class="dropdown-divider"></li>
+                                <li><a href="/auth/userList" class="dropdown-item disabled">Show list of users</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('MANAGER')">
+                    <a class="nav-link" href="/mana">Manager</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+                    <div class="container">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin manager menu
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" >
+                                <li><a href="/showConfirmedProducts" class="dropdown-item" >Show confirmed products</a></li>
+                            </ul>
+                        </div>
+                    </div>
+<!--                    <a class="nav-link" href="/admin-manager">Admin Manager</a>-->
+                </li>
+<!--                <li class="nav-item" sec:authorize="hasRole('USER')">-->
+<!--                    &lt;!&ndash;                    <a class="nav-link" href="/admin">Admin</a>&ndash;&gt;-->
+<!--                    <div class="container">-->
+<!--                        <div class="dropdown">-->
+<!--                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin menu-->
+<!--                                <span class="caret"></span></button>-->
+<!--                            <ul class="dropdown-menu" >-->
+<!--                                <li><a href="/productAdd" class="dropdown-item" >Leave comment</a></li>-->
+<!--                                <li><a href="/productList" class="dropdown-item">Show list of products</a></li>-->
+<!--                                <li><a href="/productEdit" class="dropdown-item">Product edit</a></li>-->
+<!--                                <li class="dropdown-divider"></li>-->
+<!--                                <li><a href="/productDelete" class="dropdown-item disabled">Product delete</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
+            </ul>
+            <ul class="navbar-nav">
+                <li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </li>
+
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a href="/auth/login" class="btn btn-outline-success">Login</a>
+                    <a href="/auth/register" class="btn btn-outline-primary">Register</a>
+                </li>
+
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a href="/auth/logout" class="btn btn-outline-danger">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</section>
+
+
+
+</body>
+</html>

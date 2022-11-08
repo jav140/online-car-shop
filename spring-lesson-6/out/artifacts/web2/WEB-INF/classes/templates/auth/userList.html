@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments.html :: head('User list')">
+
+</head>
+<body>
+
+<h4 style="text-align: center">All users are here</h4>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Active</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <th:block th:each="user,count : ${users}">
+        <tr>
+            <td th:text="${user.id}"></td>
+            <td>
+                <a th:href="@{'/auth/go/'+${user.username}}" th:text="${user.username}"></a>
+            </td>
+            <td th:text="${user.isActive()}"></td>
+            <td th:text="${user.roles}"></td>
+        </tr>
+    </th:block>
+
+    </tbody>
+</table>
+
+</body>
+</html>
