@@ -1,6 +1,6 @@
 # online-car-shop
 
-You can buy cars any car via internet
+You can buy any car via internet
 
 ## Used technologies  <br/>
 - Spring MVC   <br/>
